@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Laravel | Log in</title>
+  <title>User | Log in</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -17,17 +17,18 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>LaravelAdmin</b>LTE</a>
+    <a href="#"><b>Login</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Admin Iogin</p>
 <!-- Learn with this vedio :- https://www.youtube.com/watch?v=4_scUW-e5OQ -->
-      <form action="{{ route('admin.login')}}" method="post">
+<!-- (NULL, 'Pranshu', 'pranshusoftgetix@gmail.com', NULL, MD5('pranshusoftgetix')-->
+      <form action="{{ route('login') }}" method="POST">
       @csrf
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" name="email" class="form-control" placeholder="Email" id="email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -35,7 +36,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" name="password" class="form-control" placeholder="Password" id="password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -74,7 +75,7 @@
         <a href="forgot-password.html">Forgot password</a>
       </p>
       <p class="mb-0">
-        <a href="register.html" class="text-center">Register</a>
+        <a href="{{route('register')}}" class="text-center">Register</a>
       </p>
     </div>
     <!-- /.login-card-body -->

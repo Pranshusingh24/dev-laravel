@@ -1,6 +1,13 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\registerController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,19 +20,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// require__DIR__.'/auth.php';
+
 Route::get('/', function () {
     return view('welcome');
+    
 });
 
-Route::get('/', function () {
-    return view('layouts.admin'); 
-});
+// // get method Register User  page 
+// Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+// Route::post('/register', [RegisterController::class, 'register']);
 
-Route::get('/', function(){
-    return view('user.index');
-});
+// // get method view page me data get ke liye use hota hay  
+// Route::get('/admin', [LoginController::class, 'index'])->name('admin');
+// // post menthod ka use kisi form ka data DB me bhejna hota hay 
+// Route::post('/login', [LoginController::class, 'showloginform'])->name('login');
 
-Route::get('/admin/login', [LoginController::class, 'showloginform'])->name('index');
-Route::get('/login', [LoginController::class, 'showloginform'])->name('login');
-// Route::post('/login', [AdminController::class, 'login'])->name('login');
-// /var/www/html/LaraAdminLTE/resources/views/admin/auth/index.blade.php
+// // Redirect Dashboard page route 
+// Route::get('/dashboard', [DashboardController::class, 'viewDashboard'])->name('dashboard');
+// // Logout page route 
+// Route::get('/logout', [DashboardController::class, 'logout'])->name('logout');
+
+// We are start to create new reutes for Auth system 
+    // we are useing 'match' method for call both method "Get & Post" (1 se jyada method ka use ho rha ho to 'any' ka use karte sakte hay)
+//    Route::match(["get", "post"], 'register', [AuthController::class, 'register'])->name('register'); 
+   Route::any( 'register', [AuthController::class, 'register'])->name('register'); 
+
+   
+    // we are useing 'match' method for call both method "Get & Post"
+   Route::match(["get", "post"], 'login', [AuthController::class, 'login'])->name('login'); 
+
+
+   Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+
+    // we are useing 'match' method for call both method "Get & Post"
+   Route::match(["get", "post"], 'profile', [AuthController::class, 'profile'])->name('profile'); 
+
+   Route::get('logout', [AuthController::class, 'logout'])->name('logout');
