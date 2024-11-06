@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+
+  <style>
+    p.error-message{color: red;}
+  </style>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -61,6 +65,9 @@
       </div>
 
       <button type="submit" class="btn btn-success btn-block mt-2">Register</button>
+      <p class="mb-0">
+        <a href="{{route('login')}}" class="text-center">Log In</a>
+      </p>
   </form>
 
     </div>

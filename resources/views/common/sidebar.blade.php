@@ -13,7 +13,8 @@
         <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
       </div> -->
       <div class="info">
-        <a href="#" class="d-block">Pranshu Singh</a>
+        <!-- "auth()->user()->name" ka use karke user ka name get kar sakte hay & 'strtoupper' ke use se uppercase kar sakte hay  -->
+        <a href="{{ route('dashboard') }}" class="d-block">Hello "{{ strtoupper(auth()->user()->name) }}"</a>
       </div>
     </div>
 
@@ -23,41 +24,36 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item menu-open">
-          <a href="#" class="nav-link active">
+          <a href=" {{ route('dashboard') }}" class="nav-link active">
           <i class="far fa-circle nav-icon"></i>
             <p>
-            Super Administrator
-            <!-- <i class="far fa-circle nav-icon"></i> -->
+          Dashboard
             </p>
           </a>
-          <ul class="nav">
-            <li class="nav-item">
-              <a href="#" class="nav-link">
+          <li class="nav-item">
+              <a href=" {{ route('register') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Coordinators</p>
+                <p>Register</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href=" {{ route('login') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Clerical</p>
+                <p>Login</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href=" {{ route('profile') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Blogadmin</p>
+                <p>Edit Profile</p>
               </a>
             </li>
-          </ul>
+      
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href=" {{ route('logout') }}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
-            <p>
-            Sales
-              <!-- <span class="right badge badge-danger">New</span> -->
-            </p>
+            <p>Logout Account</p>
           </a>
         </li>
       </ul>

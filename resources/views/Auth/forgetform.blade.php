@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>User | Profile Page</title>
+  <title>User | Forget Password</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -16,35 +16,37 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-  <div class="login-logo">
-    <a href="#"><b>Edit Your Profile</b></a>
-  </div>
+
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Edit Your Profile</p>
-<!-- Learn with this vedio :- https://www.youtube.com/watch?v=4_scUW-e5OQ -->
-<!-- (NULL, 'Pranshu', 'pranshusoftgetix@gmail.com', NULL, MD5('pranshusoftgetix')-->
-  <form method="POST" action="{{ route('profile') }}">
+      <p class="login-box-msg">Forget Password</p>
+<!-- Learn Forget Password vedio :- https://www.youtube.com/watch?v=XiARKCj6Sgc&t=226s !-->
+      <form action="{{ route('stepforgetpassword') }}" method="POST">
       @csrf
-      <div class="mb-3">
-          <label for="name">Name</label>
-          <input type="text" id="name" class="form-control" name="name" value="{{ auth()->user()->name }}" required autofocus>
-      </div>
-
-      <div>
-          <label for="email">Email</label>
-          <input type="email" id="email" class="form-control" disabled name="email" value="{{ auth()->user()->email }}" required>
-      </div>
-
-      <div>
-          <label for="password">Password</label>
-          <input type="password" id="password" class="form-control" name="password"  required>
-      </div>
-
-      <button type="submit" class="btn btn-success btn-block mt-2">Update</button>
-  </form>
-
+        <div class="input-group mb-3">
+          <input type="email" name="email" class="form-control" placeholder="Email" id="email">
+          
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+          @error('email')
+            <p class="error-message">{{$message}}</p>
+          @enderror
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col">
+            <button type="submit" class="btn btn-danger btn-block">Forget Password</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+      <p class="mt-3">
+        <a href="{{route('login')}}" class="btn btn-success btn-block">Log In</a>
+      </p>
     </div>
     <!-- /.login-card-body -->
   </div>

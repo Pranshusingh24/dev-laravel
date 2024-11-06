@@ -44,16 +44,26 @@ Route::get('/', function () {
 // We are start to create new reutes for Auth system 
     // we are useing 'match' method for call both method "Get & Post" (1 se jyada method ka use ho rha ho to 'any' ka use karte sakte hay)
 //    Route::match(["get", "post"], 'register', [AuthController::class, 'register'])->name('register'); 
-   Route::any( 'register', [AuthController::class, 'register'])->name('register'); 
 
+   Route::any( 'register', [AuthController::class, 'register'])->name('register'); 
    
     // we are useing 'match' method for call both method "Get & Post"
    Route::match(["get", "post"], 'login', [AuthController::class, 'login'])->name('login'); 
 
+    //Forget password create with post method 
+   Route::any( 'forgetpassword', [AuthController::class, 'forgetpassword'])->name('forgetpassword'); 
+    //Step of Forget password create with post method 
+   Route::any( 'stepforgetpassword', [AuthController::class, 'stepforgetpassword'])->name('stepforgetpassword');
+    //reset password route 
+   Route::any( 'resetpassword{token}', [AuthController::class, 'resetpassword'])->name('resetpassword'); 
 
-   Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+    Route::group([
+        // "['middleware'  => ['auth'] ]" ka use widhout login not able to access these are Routes 
+    'middleware'  => ['auth'] ], function(){
+        Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
 
-    // we are useing 'match' method for call both method "Get & Post"
-   Route::match(["get", "post"], 'profile', [AuthController::class, 'profile'])->name('profile'); 
+        // we are useing 'match' method for call both method "Get & Post"
+        Route::match(["get", "post"], 'profile', [AuthController::class, 'profile'])->name('profile'); 
 
-   Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+        Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    });
